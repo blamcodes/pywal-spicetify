@@ -62,20 +62,26 @@ impl Wal {
                 "Generating colors-spicetify.ini file in {}",
                 &path.display()
             );
-            let content = r#"accent             = {color0.strip} 
-accent-active      = {color2.strip} 
-accent-inactive    = {color3.strip} 
-banner             = {color4.strip} 
-border-active      = {foreground.strip} 
-border-inactive    = {foreground.strip} 
-header             = {foreground.strip} 
-highlight          = {color6.strip} 
-main               = {background.strip} 
-notification       = {color7.strip}
-notification-error = {color8.strip} 
-subtext            = {cursor.strip} 
-text               = {cursor.strip}"#;
-            let _ = file.write_all(content.as_bytes());
+            let content = r#"text               = ${foreground} 
+subtext            = ${xrdb:foreground}   
+main               = ${xrdb:color2} 
+main-elevated      = ${xrdb:color2}   
+highlight          = ${xrdb:color1}   
+highlight-elevated = ${xrdb:color6}   
+sidebar            = ${xrdb:color5}   
+player             = ${xrdb:color1}   
+card               = ${xrdb:color0}   
+shadow             = ${xrdb:color8}   
+selected-row       = ${xrdb:color5}   
+button             = ${xrdb:color7}   
+button-active      = ${xrdb:color6}   
+button-disabled    = ${xrdb:color8}   
+tab-active         = ${xrdb:color2}   
+notification       = ${xrdb:color6}   
+notification-error = ${xrdb:color1}   
+equalizer          = ${xrdb:color0}   
+misc               = ${xrdb:color8}"#;  
+        let _ = file.write_all(content.as_bytes());
         }
         self.reload();
     }
