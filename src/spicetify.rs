@@ -63,7 +63,7 @@ impl Spicetify {
             //Remove exisitng config
             if lines[i].contains("pywal") {
                 buf.pop(); //pop the last \n
-                i += 14;
+                i += 20;
                 continue;
             }
             buf.push(lines[i].clone());
